@@ -16,26 +16,26 @@ _kernelBuilder.AddGoogleAIGeminiChatCompletion(modelId, geminiApiKey);
 //_kernelBuilder.Plugins.AddFromType<TimePlugin>();
 
 //using dependency injection
-_kernelBuilder.Services.AddSingleton<TimePlugin>();
-_kernelBuilder.Services.AddSingleton<TextPlugin>();
+//_kernelBuilder.Services.AddSingleton<TimePlugin>();
+//_kernelBuilder.Services.AddSingleton<TextPlugin>();
 
 // Register KernelPluginCollection from the plugins
-_kernelBuilder.Services.AddSingleton<KernelPluginCollection>(sp =>
-{
-    var plugins = new KernelPluginCollection
-    {
-        KernelPluginFactory.CreateFromObject(sp.GetRequiredService<TimePlugin>()),
-        KernelPluginFactory.CreateFromObject(sp.GetRequiredService<TextPlugin>())
-    };
-    return plugins;
-});
+//_kernelBuilder.Services.AddSingleton<KernelPluginCollection>(sp =>
+//{
+//    var plugins = new KernelPluginCollection
+//    {
+//        KernelPluginFactory.CreateFromObject(sp.GetRequiredService<TimePlugin>()),
+//        KernelPluginFactory.CreateFromObject(sp.GetRequiredService<TextPlugin>())
+//    };
+//    return plugins;
+//});
 
 // Register the Kernel instance with plugin collection
-_kernelBuilder.Services.AddTransient<Kernel>(sp =>
-{
-    var pluginCollection = sp.GetRequiredService<KernelPluginCollection>();
-    return new Kernel(sp, pluginCollection);
-});
+//_kernelBuilder.Services.AddTransient<Kernel>(sp =>
+//{
+//    var pluginCollection = sp.GetRequiredService<KernelPluginCollection>();
+//    return new Kernel(sp, pluginCollection);
+//});
 
 var kernel = _kernelBuilder.Build();
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
